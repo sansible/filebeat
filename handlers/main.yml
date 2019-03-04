@@ -1,1 +1,13 @@
 ---
+
+- name: restart filebeat
+  become: yes
+  service:
+    name: filebeat
+    state: restarted
+
+- name: stop filebeat
+  become: yes
+  service:
+    name: filebeat
+    state: stopped

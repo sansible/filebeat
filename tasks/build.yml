@@ -1,0 +1,34 @@
+---
+
+# workaround for Bionic behind a proxy
+# https://bugs.launchpad.net/ubuntu/+source/software-properties/+bug/1433761
+- name: Download Elastic APT key
+  become: yes
+  get_url:
+    dest: /tmp/elastic.asc
+    mode: 0644
+    url: "https://{{ sansible_filebeat_repo_keyserver }}/pks/lookup?op=get&\
+      search=0x{{ sansible_filebeat_repo_key_id }}"
+
+- name: Add Elastic APT key
+  become: yes
+  apt_key:
+    file: /tmp/elastic.asc
+    id: "D88E42B4"
+    state: present
+
+- name: Install Elastic repo
+  become: yes
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co\
+      /packages/{{ sansible_filebeat_version | regex_replace('^([0-9]+).*$', '\\1.x' ) }}/apt
+      stable main"
+    state: present
+    update_cache: yes
+
+- name: Install Filebeat
+  become: yes
+  apt:
+    name: "filebeat={{ sansible_filebeat_version }}"
+  notify:
+    - stop filebeat

@@ -3,10 +3,8 @@
 # For supported options, see https://galaxy.ansible.com/intro#meta
 
 galaxy_info:
-  author: ~
-  description: ~
-  # company: optional
-
+  author: SAnsible
+  description: Elasticsearch Filebeat
   license: MIT
 
   # SAnsible only supports Ansible 2.4+
@@ -23,7 +21,9 @@ galaxy_info:
 
   # List of tags for your role to enable users to find it easily on Ansible Galaxy.
   # See https://galaxy.ansible.com/explore#/ for inspiration.
-  galaxy_tags: []
+  galaxy_tags:
+    - ELK
+    - Filebeat
 
 # List of Ansible Galaxy roles on which your role depends on.
 dependencies: []

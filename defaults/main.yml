@@ -1,1 +1,6 @@
 ---
+
+sansible_filebeat_configuration: {}
+sansible_filebeat_repo_key_id: D88E42B4
+sansible_filebeat_repo_keyserver: keyserver.ubuntu.com
+sansible_filebeat_version: 6.6.1

@@ -1,0 +1,11 @@
+---
+
+- name: Create Filebeat config
+  become: yes
+  template:
+    dest: "/etc/filebeat/filebeat.yml"
+    src: filebeat.yml.j2
+  vars:
+    configuration: "{{ sansible_filebeat_configuration }}"
+  notify:
+    - restart filebeat

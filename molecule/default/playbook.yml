@@ -4,4 +4,17 @@
   hosts: all
 
   roles:
-    - role: ROLE_NAME
+    - role: filebeat
+      sansible_filebeat_configuration:
+        filebeat.inputs:
+          - type: log
+            enabled: true
+            json.keys_under_root: true
+        output.elasticsearch:
+          hosts:
+            - localhost:9200
+          index: "testing-%{+yyyy.MM.dd}"
+        setup.template:
+          name: testing
+          pattern: testing-*
+          enabled: false

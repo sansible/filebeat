@@ -30,5 +30,3 @@
   become: yes
   apt:
     name: "filebeat={{ sansible_filebeat_version }}"
-  notify:
-    - stop filebeat

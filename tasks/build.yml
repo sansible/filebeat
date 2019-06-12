@@ -7,9 +7,8 @@
   get_url:
     dest: /tmp/elastic.asc
     mode: 0644
-    url: "{{ sansible_filebeat_repo_keyserver }}/pks/lookup?op=get&\
-      search=0x{{ sansible_filebeat_repo_key_id }}"
-  retries: 2
+    url: "{{ [sansible_filebeat_repo_keyserver] | flatten | random }}/pks/lookup?op=get&search=0x{{ sansible_filebeat_repo_key_id }}"
+  retries: 5
   delay: 10
   register: sansible_filebeat_pgp_result
   until: sansible_filebeat_pgp_result is succeeded
